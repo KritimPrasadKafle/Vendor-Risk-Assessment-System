@@ -6,7 +6,7 @@ const VendorList = () => {
   const [vendors, setVendors] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/vendors')
+    axios.get('http://localhost:3000/api/vendors')
       .then(response => setVendors(response.data))
       .catch(error => console.error('Error fetching vendors:', error));
   }, []);

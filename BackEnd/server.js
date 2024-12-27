@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const vendorRoutes = require('./routes/vendorRoutes');
+const vendorRoutes = require('./Routes/vendorRoutes');
 
 const app = express();
 
@@ -9,8 +9,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+require("dotenv").config();
+const PORT = process.env.PORT || 3000;
+const MONGODB_URL = process.env.MONGODB_URL;
+
 // MongoDB connection
-mongoose.connect('mongodb+srv://kritim10kafle:0123456789@cluster0.vkxjf.mongodb.net/vendorRiskAssessment', {
+mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -21,7 +25,7 @@ mongoose.connect('mongodb+srv://kritim10kafle:0123456789@cluster0.vkxjf.mongodb.
 app.use('/api/vendors', vendorRoutes);
 
 // Server setup
-const PORT = 5000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
